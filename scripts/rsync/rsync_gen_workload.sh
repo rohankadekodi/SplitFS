@@ -5,8 +5,9 @@ cur_dir=`readlink -f ./`
 pmem_dir=/mnt/pmem_emul
 src=$pmem_dir/src
 
+rm -rf $pmem_dir/*
+
 mkdir $src
-mkdir $dst
 
 for i in {1..10}
 do
@@ -89,5 +90,7 @@ do
 done
 
 cd $cur_dir
-cp -r $pmem_dir/src $root_dir/rsync/workload/
+
+mkdir $src_dir/rsync/workload/
+cp -r $pmem_dir/src $src_dir/rsync/workload/
 

@@ -11,5 +11,7 @@ core
 sqlite3-trace/.libs
 *output*
 *trace*
+rsync/workload/
+rsync/rsync
 
 !kernel/kbuild/Makefile.setup

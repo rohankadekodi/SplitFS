@@ -16,6 +16,7 @@ run_rsync()
     done
 }
 
+:'
 sudo $setup_dir/dax_config.sh
 run_rsync dax
 
@@ -27,11 +28,12 @@ run_rsync relaxed_nova
 
 sudo $setup_dir/pmfs_config.sh
 run_rsync pmfs
+'
 
-:'
 sudo $setup_dir/dax_config.sh
 run_rsync boost
 
+:'
 sudo $setup_dir/dax_config.sh
 run_rsync sync_boost
 
