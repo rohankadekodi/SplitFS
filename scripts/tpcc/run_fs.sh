@@ -10,13 +10,24 @@ set -x
 workload=tpcc
 fs=$1
 run_id=$2
-current_dir=$(pwd)
-tpcc_dir=`readlink -f ../../tpcc-sqlite`
+cur_dir=`readlink -f ./`
+src_dir=`readlink -f ../../`
+tpcc_dir=$src_dir/tpcc-sqlite
 workload_dir=$tpcc_dir/database
 pmem_dir=/mnt/pmem_emul
-boost_dir=`readlink -f ../../boost-tpcc`
-result_dir=`readlink -f ../../results`
+boost_dir=$src_dir/boost-ycsb
+result_dir=$src_dir/results
 fs_results=$result_dir/$fs/$workload
+
+if [ "$fs" == "boost" ]; then
+    run_boost=1
+elif [ "$fs" == "sync_boost" ]; then
+    run_boost=1
+elif [ "$fs" == "posix_boost" ]; then
+    run_boost=1
+else
+    run_boost=0
+fi
 
 ulimit -c unlimited
 
@@ -34,11 +45,21 @@ run_workload()
     rm -rf $pmem_dir/*
     cp $workload_dir/tpcc.db $pmem_dir && sync
 
+    if [ $run_boost -eq 1 ]; then
+        export LD_LIBRARY_PATH=$src_dir/splitfs-so/tpcc/strict
+        export NVP_TREE_FILE=$boost_dir/bin/nvp_nvp.tree
+        #export LD_PRELOAD=$src_dir/splitfs-so/tpcc/strict/libnvp.so
+    fi
+
     sleep 5
 
     date
 
-    time $tpcc_dir/tpcc_start -w 4 -c 1 -t 200000 2>&1 | tee $fs_results/run$run_id
+    if [ $run_boost -eq 1 ]; then
+        time LD_PRELOAD=$src_dir/splitfs-so/tpcc/strict/libnvp.so $tpcc_dir/tpcc_start -w 4 -c 1 -t 200000
+    else
+        time $tpcc_dir/tpcc_start -w 4 -c 1 -t 200000 2>&1 | tee $fs_results/run$run_id
+    fi
 
     date
 

@@ -43,7 +43,7 @@ sudo $setup_dir/nova_config.sh
 run_ycsb nova
 
 sudo $setup_dir/dax_config.sh
-run_ycsb_boost boost
+run_ycsb boost
 
 :'
 sudo $setup_dir/dax_config.sh
