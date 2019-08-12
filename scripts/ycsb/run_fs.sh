@@ -54,10 +54,15 @@ load_workload()
     mkdir -p $fs_results
     rm $fs_results/run$run_id
 
+    if [ $run_boost -eq 1 ]; then
+        export LD_LIBRARY_PATH=$src_dir/splitfs-so/ycsb/strict
+        export NVP_TREE_FILE=$boost_dir/bin/nvp_nvp.tree
+    fi
+
     date
 
     if [ $run_boost -eq 1 ]; then
-        $boost_dir/run_boost.sh -p $boost_dir -t nvp_nvp.tree $leveldb_build_dir/db_bench --use_existing_db=0 --benchmarks=ycsb,stats,printdb --db=$database_dir --threads=1 --open_files=1000 2>&1 | tee $fs_results/run$run_id
+        LD_PRELOAD=$src_dir/splitfs-so/ycsb/strict/libnvp.so $leveldb_build_dir/db_bench --use_existing_db=0 --benchmarks=ycsb,stats,printdb --db=$database_dir --threads=1 --open_files=1000 2>&1 | tee $fs_results/run$run_id
     else
         $leveldb_build_dir/db_bench --use_existing_db=0 --benchmarks=ycsb,stats,printdb --db=$database_dir --threads=1 --open_files=1000 2>&1 | tee $fs_results/run$run_id
     fi
