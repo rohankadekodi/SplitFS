@@ -1,5 +1,12 @@
 #!/bin/bash
 
+if [ "$#" -ne 1 ]; then
+	echo "Usage: compile_kernel.sh <num_threads>"
+	exit 1
+fi	
+
+threads=$1
+
 set -x
 
 cur_path=`readlink -f ./`
@@ -12,7 +19,7 @@ cd $kbuild_path
 make -f Makefile.setup .config
 make -f Makefile.setup
 sleep 10
-make -j 4 # compile kernel
+make -j $threads # compile kernel
 sleep 10
 sudo make modules_install ; sudo make install # install modules
 

@@ -10,15 +10,29 @@ set -x
 workload=$1
 fs=$2
 run_id=$3
-current_dir=$(pwd)
-leveldb_dir=`readlink -f ../../leveldb`
-leveldb_build_dir=$leveldb_dir/build
-database_dir=/mnt/pmem_emul/leveldbtest-1000
-workload_dir=$leveldb_dir/ycsb_workloads
+current_dir=`readlink -f ./`
+src_dir=`readlink -f ../../`
 pmem_dir=/mnt/pmem_emul
-boost_dir=`readlink -f ../../boost-ycsb`
-result_dir=`readlink -f ../../results`
+leveldb_dir=$src_dir/leveldb
+leveldb_build_dir=$leveldb_dir/build
+database_dir=$pmem_dir/leveldbtest-1000
+workload_dir=$leveldb_dir/workloads
+result_dir=$src_dir/results
 fs_results=$result_dir/$fs/$workload
+
+if [ "$fs" == "boost" ]; then
+    boost_dir=$src_dir/boost-ycsb
+    run_boost=1
+elif [ "$fs" == "sync_boost" ]; then
+    boost_dir=$src_dir/boost-ycsb-sync
+    run_boost=1
+elif [ "$fs" == "posix_boost" ]; then
+    boost_dir=$src_dir/boost-ycsb-posix
+    run_boost=1
+else
+    run_boost=0
+fi
+ 
 
 ulimit -c unlimited
 
@@ -42,9 +56,15 @@ load_workload()
 
     date
 
-    $leveldb_build_dir/db_bench --use_existing_db=0 --benchmarks=ycsb,stats,printdb --db=$database_dir --threads=1 --open_files=1000 2>&1 | tee $fs_results/run$run_id
+    if [ $run_boost -eq 1 ]; then
+        $boost_dir/run_boost.sh -p $boost_dir -t nvp_nvp.tree $leveldb_build_dir/db_bench --use_existing_db=0 --benchmarks=ycsb,stats,printdb --db=$database_dir --threads=1 --open_files=1000 2>&1 | tee $fs_results/run$run_id
+    else
+        $leveldb_build_dir/db_bench --use_existing_db=0 --benchmarks=ycsb,stats,printdb --db=$database_dir --threads=1 --open_files=1000 2>&1 | tee $fs_results/run$run_id
+    fi
 
     date
+
+    rm $pmem_dir/*
 
     echo Sleeping for 5 seconds . .
     sleep 5
@@ -63,10 +83,16 @@ run_workload()
     rm $fs_results/run$run_id
 
     date
-
-    $leveldb_build_dir/db_bench --use_existing_db=1 --benchmarks=ycsb,stats,printdb --db=$database_dir --threads=1 --open_files=1000 2>&1 | tee $fs_results/run$run_id
+    
+    if [ $run_boost -eq 1 ]; then
+        $boost_dir/run_boost.sh -p $boost_dir -t nvp_nvp.tree $leveldb_build_dir/db_bench --use_existing_db=1 --benchmarks=ycsb,stats,printdb --db=$database_dir --threads=1 --open_files=1000 2>&1 | tee $fs_results/run$run_id
+    else
+        $leveldb_build_dir/db_bench --use_existing_db=1 --benchmarks=ycsb,stats,printdb --db=$database_dir --threads=1 --open_files=1000 2>&1 | tee $fs_results/run$run_id
+    fi
 
     date
+
+    rm $pmem_dir/*
 
     echo Sleeping for 5 seconds . .
     sleep 5

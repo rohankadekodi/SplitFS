@@ -1,7 +1,8 @@
 #!/bin/bash
 
-current_dir=$(pwd)
-setup_dir=`readlink -f ..`
+src_dir=`readlink -f ../../`
+current_dir=`readlink -f ./`
+setup_dir=`readlink -f ../configs`
 pmem_dir=/mnt/pmem_emul
 
 run_ycsb()
@@ -29,57 +30,22 @@ run_ycsb()
     done
 }
 
-run_ycsb_boost()
-{
-    fs=$1
-    for run in 1
-    do
-        sudo rm -rf $pmem_dir/*
-        sudo ./run_boost.sh LoadA $fs $run
-        sleep 5
-        sudo ./run_boost.sh RunA $fs $run
-        sleep 5
-        sudo ./run_boost.sh RunB $fs $run
-        sleep 5
-        sudo ./run_boost.sh RunC $fs $run
-        sleep 5
-        sudo ./run_boost.sh RunF $fs $run
-        sleep 5
-        sudo ./run_boost.sh RunD $fs $run
-        sleep 5
-        sudo ./run_boost.sh LoadE $fs $run
-        sleep 5
-        sudo ./run_boost.sh RunE $fs $run
-        sleep 5
-    done
-}
-
-
 sudo $setup_dir/dax_config.sh
-run_ycsb dax_2M_new
-:'
-cd $setup_dir
-sudo ./nova_relaxed_config.sh
-cd $current_dir
-run_ycsb relaxed_nova_2M_new
+run_ycsb dax
 
-cd $setup_dir
+sudo $setup_dir/nova_relaxed_config.sh
+run_ycsb relaxed_nova
+
 sudo $setup_dir/pmfs_config.sh
-cd $current_dir
-run_ycsb pmfs_2M_new
+run_ycsb pmfs
 
-cd $setup_dir
 sudo $setup_dir/nova_config.sh
-cd $current_dir
-run_ycsb nova_64M_new
+run_ycsb nova
 
 sudo $setup_dir/dax_config.sh
 run_ycsb_boost boost
 
-cd $setup_dir
-sudo $setup_dir/nova_config.sh
-cd $current_dir
-
+:'
 sudo $setup_dir/dax_config.sh
 run_ycsb_boost sync_boost
 
