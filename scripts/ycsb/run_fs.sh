@@ -10,7 +10,7 @@ set -x
 workload=$1
 fs=$2
 run_id=$3
-current_dir=`readlink -f ./`
+cur_dir=`readlink -f ./`
 src_dir=`readlink -f ../../`
 pmem_dir=/mnt/pmem_emul
 leveldb_dir=$src_dir/leveldb
@@ -150,4 +150,4 @@ case "$workload" in
         exit 1
 esac
 
-cd $current_dir
+cd $cur_dir

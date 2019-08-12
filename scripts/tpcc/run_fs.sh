@@ -70,4 +70,4 @@ run_workload()
 
 run_workload
 
-cd $current_dir
+cd $cur_dir

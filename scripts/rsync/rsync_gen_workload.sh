@@ -1,7 +1,7 @@
 #!/bin/bash
 
-cur_dir=$(pwd)
-root_dir=`readlink -f ..`
+src_dir=`readlink -f ../../`
+cur_dir=`readlink -f ./`
 pmem_dir=/mnt/pmem_emul
 src=$pmem_dir/src
 

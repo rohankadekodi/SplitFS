@@ -10,13 +10,24 @@ set -x
 workload=rsync
 fs=$1
 run_id=$2
-current_dir=$(pwd)
-rsync_dir=`readlink -f ../../rsync`
+src_dir=`readlink -f ../../`
+cur_dir=`readlink -f ./`
+rsync_dir=$src_dir/rsync
 workload_dir=$rsync_dir/workload
 pmem_dir=/mnt/pmem_emul
-boost_dir=`readlink -f ../../boost-rsync`
-result_dir=`readlink -f ../../results`
+boost_dir=$src_dir/boost-ycsb
+result_dir=$src_dir/results
 fs_results=$result_dir/$fs/$workload
+
+if [ "$fs" == "boost" ]; then
+    run_boost=1
+elif [ "$fs" == "sync_boost" ]; then
+    run_boost=1
+elif [ "$fs" == "posix_boost" ]; then
+    run_boost=1
+else
+    run_boost=0
+fi
 
 ulimit -c unlimited
 
@@ -37,11 +48,20 @@ run_workload()
     cd $pmem_dir
     mkdir dest
 
+    if [ $run_boost -eq 1 ]; then
+        export LD_LIBRARY_PATH=$src_dir/splitfs-so/tpcc/strict
+        export NVP_TREE_FILE=$boost_dir/bin/nvp_nvp.tree
+    fi
+
     sleep 5
 
     date
 
-    time $rsync_dir/rsync -Wr ./src dest/ 2>&1 | tee $fs_results/run$run_id
+    if [ $run_boost -eq 1 ]; then
+        time LD_PRELOAD=$src_dir/splitfs-so/tpcc/strict/libnvp.so $rsync_dir/rsync -Wr ./src dest/ 2>&1 | tee $fs_results/run$run_id
+    else
+        time $rsync_dir/rsync -Wr ./src dest/ 2>&1 | tee $fs_results/run$run_id
+    fi
 
     date
 
@@ -55,4 +75,4 @@ run_workload()
 
 run_workload
 
-cd $current_dir
+cd $cur_dir
