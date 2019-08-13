@@ -33,7 +33,7 @@
 2. LevelDB: Compiling LevelDB requires installing cmake version > 3.9. For ubuntu, please run the script `dependencies/leveldb_deps.sh`
 3. YCSB: Compiling YCSB requires installing Oracle JDK 8 as well as installing maven version 3. JDK can be downloaded from [this link](https://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html). Please follow the steps below:
     * Download Java SE Development Kit 8u221 for Linux x64 (filename: jdk-8u221-linux-x64.tar.gz). This involves creating a free user account on Oracle.
-    * $mkdir /opt/jdk
+    * `$mkdir /opt/jdk`
     * `$tar -xf jdk-8u221-linux-x64.tar.gz -C /opt/jdk`
     * `$update-alternatives --install /usr/bin/java java /opt/jdk/jdk1.8.0_221/bin/java 100`
     * `$update-alternatives --install /usr/bin/javac javac /opt/jdk/jdk1.8.0_221/bin/javac 100`
