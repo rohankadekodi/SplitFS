@@ -5,10 +5,10 @@
 ### System Requirements
 
 1. Ubuntu 16.04
-2. Greater than or equal to 32 GB DRAM
+2. At least 32 GB DRAM
 3. At least 4 cores
 4. Baremetal machine (Not a VM)
-5. Intel Processor supporting `clflushopt` instruction (Introduced in Intel processor family -- Broadwell)
+5. Intel Processor supporting `clflushopt` instruction (Introduced in Intel processor family -- Broadwell). This can be verified with `lscpu | grep clflushopt`
 
 ---
 
