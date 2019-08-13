@@ -13,12 +13,12 @@
 1. kernel: Installing the linux kernel 4.13.0 involves installing `bc`, `libelf-dev` and `libncurses5-dev`. For ubuntu, please run the script `dependencies/kernel_deps.sh`
 2. LevelDB: Compiling LevelDB requires installing cmake version > 3.9. For ubuntu, please run the script `dependencies/leveldb_deps.sh`
 3. YCSB: Compiling YCSB requires installing Oracle JDK 8 as well as installing maven version 3. JDK can be downloaded from [this link](https://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html). Please follow the steps below:
-    3(i). Download Java SE Development Kit 8u221 for Linux x64 (filename: jdk-8u221-linux-x64.tar.gz). This involves creating a free user account on Oracle.
-    3(iii). $mkdir /opt/jdk
-    3(ii). $tar -xf jdk-8u221-linux-x64.tar.gz -C /opt/jdk
-    3(iii). $update-alternatives --install /usr/bin/java java /opt/jdk/jdk1.8.0_221/bin/java 100
-    3(iv). $update-alternatives --install /usr/bin/javac javac /opt/jdk/jdk1.8.0_221/bin/javac 100
-    3(v). Check installation using java -version
+    i. Download Java SE Development Kit 8u221 for Linux x64 (filename: jdk-8u221-linux-x64.tar.gz). This involves creating a free user account on Oracle.
+    ii. $mkdir /opt/jdk
+    iii. $tar -xf jdk-8u221-linux-x64.tar.gz -C /opt/jdk
+    iv. $update-alternatives --install /usr/bin/java java /opt/jdk/jdk1.8.0_221/bin/java 100
+    v. $update-alternatives --install /usr/bin/javac javac /opt/jdk/jdk1.8.0_221/bin/javac 100
+    vi. Check installation using java -version
 4. SplitFS: Compiling SplitFS requires installing `Boost`. For Ubuntu, please run the script `dependencies/splitfs_deps.sh`
 
 ### Setup
