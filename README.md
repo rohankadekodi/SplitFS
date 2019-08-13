@@ -4,7 +4,7 @@
 
 ### Contents
 
-1. `boost-ycsb/` contains the source code for SplitFS-strict optimized for YCSB
+1. `boost-ycsb/` contains the source code for SplitFS-strict
 2. `dependencies/` contains packages and scripts to resolve dependencies
 3. `kernel/` contains the Linux 4.13.0 kernel
 4. `leveldb/` contains LevelDB source code

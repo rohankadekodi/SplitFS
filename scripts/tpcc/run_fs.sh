@@ -15,7 +15,7 @@ src_dir=`readlink -f ../../`
 tpcc_dir=$src_dir/tpcc-sqlite
 workload_dir=$tpcc_dir/database
 pmem_dir=/mnt/pmem_emul
-boost_dir=$src_dir/boost-ycsb
+boost_dir=$src_dir/splitfs
 result_dir=$src_dir/results
 fs_results=$result_dir/$fs/$workload
 

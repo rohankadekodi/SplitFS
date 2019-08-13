@@ -15,7 +15,7 @@ cur_dir=`readlink -f ./`
 rsync_dir=$src_dir/rsync
 workload_dir=$rsync_dir/workload
 pmem_dir=/mnt/pmem_emul
-boost_dir=$src_dir/boost-ycsb
+boost_dir=$src_dir/splitfs
 result_dir=$src_dir/results
 fs_results=$result_dir/$fs/$workload
 

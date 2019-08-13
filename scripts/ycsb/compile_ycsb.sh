@@ -8,7 +8,7 @@ src_dir=`readlink -f ../../`
 cd $src_dir
 # git clone https://github.com/rohankadekodi/ycsb-ledger.git
 
-cd ycsb-ledger
+cd ycsb
 mvn install -DskipTests
 
 cd $cur_dir
