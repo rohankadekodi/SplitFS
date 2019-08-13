@@ -34,9 +34,9 @@
 3. YCSB: Compiling YCSB requires installing Oracle JDK 8 as well as installing maven version 3. JDK can be downloaded from [this link](https://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html). Please follow the steps below:
     * Download Java SE Development Kit 8u221 for Linux x64 (filename: jdk-8u221-linux-x64.tar.gz). This involves creating a free user account on Oracle.
     * $mkdir /opt/jdk
-    * $tar -xf jdk-8u221-linux-x64.tar.gz -C /opt/jdk
-    * $update-alternatives --install /usr/bin/java java /opt/jdk/jdk1.8.0_221/bin/java 100
-    * $update-alternatives --install /usr/bin/javac javac /opt/jdk/jdk1.8.0_221/bin/javac 100
+    * `$tar -xf jdk-8u221-linux-x64.tar.gz -C /opt/jdk`
+    * `$update-alternatives --install /usr/bin/java java /opt/jdk/jdk1.8.0_221/bin/java 100`
+    * `$update-alternatives --install /usr/bin/javac javac /opt/jdk/jdk1.8.0_221/bin/javac 100`
     * Check installation using `java -version`
 4. SplitFS: Compiling SplitFS requires installing `Boost`. For Ubuntu, please run the script `dependencies/splitfs_deps.sh`
 
@@ -49,7 +49,7 @@
     * Open `/etc/default/grub`
     * add `GRUB_CMDLINE_LINUX="memmap=24G!4G nokaslr"`
     * Close file
-    * $sudo update-grub && sudo update-grub2
+    * `$sudo update-grub && sudo update-grub2`
     * Reboot system
     * Run `uname -r` to ensure that system is booted with 4.13.0 kernel, and ensure that `/dev/pmem0` exists
     * $mkdir /mnt/pmem_emul
