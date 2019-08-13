@@ -2,6 +2,21 @@
 
 ---
 
+### Contents
+
+1. `boost-ycsb/` contains the source code for SplitFS-strict optimized for YCSB
+2. `dependencies/` contains packages and scripts to resolve dependencies
+3. `kernel/` contains the Linux 4.13.0 kernel
+4. `leveldb/` contains LevelDB source code
+5. `rsync/` contains the rsync source code
+6. `scripts/` contains scripts to compile and run workloads and kernel
+7. `splitfs-so/` contains the SplitFS-strict shared libraries for running different workloads
+8. `sqlite3-trace/` contains SQLite3 source code
+9. `tpcc-sqlite/` contains TPCC source code
+10. `ycsb-ledger/` contains YCSB source code
+
+---
+
 ### System Requirements
 
 1. Ubuntu 16.04
@@ -37,6 +52,7 @@
     * $sudo update-grub && sudo update-grub2
     * Reboot system
     * Run `uname -r` to ensure that system is booted with 4.13.0 kernel, and ensure that `/dev/pmem0` exists
+    * $mkdir /mnt/pmem_emul
 3. SplitFS: `scripts/splitfs/compile_splitfs.sh` -- This will compile splitfs strict
 4. LevelDB: `scripts/ycsb/compile_leveldb.sh` -- This will compile LevelDB
 5. YCSB: `scripts/ycsb/compile_ycsb.sh` -- This will compile YCSB workload
@@ -60,7 +76,7 @@
 2. TPCC: `scripts/tpcc/run_tpcc.sh` -- This will run the TPCC workload on SQLite3 with `ext4-DAX, NOVA strict, NOVA Relaxed, PMFS, splitfs-strict`
 3. rsync: `scripts/rsync/run_rsync.sh` -- This will run the rsync workload with `ext4-DAX, NOVA strict, NOVA Relaxed, PMFS, splitfs-strict`
 
-Note: Run all the workloads using `$taskset -c 0-7 <filename>.sh`. This will restrict the workloads to cores 0-7 of the system. This is essential for less variance in the performance. 
+Note: Run all the workloads using `$sudo taskset -c 0-7 <filename>.sh`. This will restrict the workloads to cores 0-7 of the system. This is essential for less variance in the performance. 
 
 
 ---
