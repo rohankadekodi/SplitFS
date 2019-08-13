@@ -1,7 +1,7 @@
 #!/bin/bash
 
 src_dir=`readlink -f ../../`
-current_dir=`readlink -f ./`
+cur_dir=`readlink -f ./`
 setup_dir=`readlink -f ../configs`
 pmem_dir=/mnt/pmem_emul
 
