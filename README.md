@@ -52,7 +52,7 @@
     * `$sudo update-grub && sudo update-grub2`
     * Reboot system
     * Run `uname -r` to ensure that system is booted with 4.13.0 kernel, and ensure that `/dev/pmem0` exists
-    * $mkdir /mnt/pmem_emul
+    * `$mkdir /mnt/pmem_emul`
 3. SplitFS: `scripts/splitfs/compile_splitfs.sh` -- This will compile splitfs strict
 4. LevelDB: `scripts/ycsb/compile_leveldb.sh` -- This will compile LevelDB
 5. YCSB: `scripts/ycsb/compile_ycsb.sh` -- This will compile YCSB workload
