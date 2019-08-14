@@ -1,6 +1,6 @@
 config PMFS_FS
 	tristate "Persistent and Protected PM file system support"
-	depends on HAS_IOMEM
+	depends on FS_DAX 
 	select CRC16
 	help
 	   If your system has a block of fast (comparable in access speed to

@@ -19,9 +19,9 @@ EXPORT_SYMBOL(nvm_perf_model);
 
 spinlock_t dax_nvm_spinlock;
 
-static uint32_t read_latency_ns = 150;
+static uint32_t read_latency_ns = 220;
 static uint32_t wbarrier_latency_ns = 0;
-static uint32_t nvm_bandwidth = 8000;
+static uint32_t nvm_bandwidth = 21000;
 static uint32_t dram_bandwidth = 63000;
 static uint64_t cpu_freq_mhz = 3600UL;
 

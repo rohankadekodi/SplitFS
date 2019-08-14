@@ -19,6 +19,7 @@
 
 #include <linux/types.h>
 #include <linux/magic.h>
+
 /* Rohan start */
 /*
 #include <linux/kobject.h>
@@ -283,7 +284,7 @@ static inline void PERSISTENT_BARRIER(void)
 
 /* Rohan NVM latency emulation */
 
-//void perfmodel_add_delay(int read, size_t size);
+void perfmodel_add_delay(int read, size_t size);
 //#define NVM_LATENCY 100
 
 /*
