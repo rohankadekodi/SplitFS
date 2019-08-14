@@ -5,7 +5,7 @@
 SplitFS introduces a new primitive termed relink to efficiently support file appends and atomic data operations. SplitFS provides three consistency modes,which different applications can choose from without interfering with each other.
 
 The [Experiments
-page](https://github.com/utsaslab/pebblesdb/blob/master/experiments.md)
+page](https://github.com/rohankadekodi/SplitFS/blob/master/experiments.md)
 has a list of experiments evaluating SplitFS(strict, sync and POSIX) vs ext4 DAX, NOVA-strict, NOVA-relaxed and PMFS. The summary is that SplitFS outperforms the other file systems on the data intensive workloads, while incurring a modest overhead on metadata heavy workloads. Please see the paper for more details. 
 
 ---

@@ -1,3 +1,11 @@
+### Performance Benchmarks
+
+We evaluate and benchmark on SplitFS using different application benchmarks like YCSB (Load A, Run A-F, Load E and Run E), TPC-C on SQLite and rsync. We compare the performance with other similar file systems like ext4 DAX, NOVA-strict, NOVA-relaxed and PMFS. We run YCSB on SplitFS-strict, TPC-C on SplitFS-POSIX and rsync on SplitFS-sync.
+1. Running YCSB on SplitFS-strict and comparing it with NOVA-strict supports the claim that SplitFS is able to match or beat the performance of state-of-the-art file systems on data intensive workloads while achieving the same guarantees that these file systems provide
+2. Running TPC-C on SplitFS-POSIX and comparing it with ext4 DAX and NOVA-strict supports the claim that SplitFS is able to provide different guarantees to applications according to their needs without remounting the underlying file system. SQLite in WAL mode does not require the strict guarantees that NOVA-strict provides leading to suboptimal performance, while running SQLite on SplitFS-POSIX helps boost performance while only providing the required guarantees from the underlying file system
+3. Running rsync on SplitFS-sync and comparing it with NOVA-relaxed and PMFS supports the claim that SplitFS incurs a modest overhead in performance for utility workloads that are metadata intensive
+
+
 ### Experiment Setup
 
 1. kernel: `cd scripts/kernel-setup; ./compile_kernel.sh; cd ..` -- This will compile the Linux 4.13.0 kernel along with loadable modules for NOVA and PMFS. It will also install the kernel after compiling. Run with `sudo` 
