@@ -17,7 +17,7 @@ We evaluate and benchmark on SplitFS using different application benchmarks like
     * Reboot system
     * Run `uname -r` to ensure that system is booted with 4.13.0 kernel, and ensure that `/dev/pmem0` exists
     * `$ mkdir /mnt/pmem_emul`
-3. SplitFS: `cd scripts/splitfs; ./compile_splitfs.sh; cd ../..` -- This will compile splitfs strict
+3. SplitFS: `cd scripts/splitfs-setup; ./compile_splitfs.sh; cd ../..` -- This will compile splitfs strict
 4. LevelDB: `cd scripts/ycsb; ./compile_leveldb.sh; cd ../..` -- This will compile LevelDB
 5. YCSB: `cd scripts/ycsb; ./compile_ycsb.sh; cd ../..` -- This will compile YCSB workload
 6. SQLite: `cd scripts/tpcc; ./compile_sqlite.sh; cd ../..` -- This will compile SQLite3
