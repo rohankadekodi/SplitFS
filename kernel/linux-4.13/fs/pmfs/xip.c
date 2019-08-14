@@ -93,7 +93,9 @@ do_xip_mapping_read(struct address_space *mapping,
 		if (!zero) {
 			left = __copy_to_user(buf+copied, xip_mem+offset, nr);
 			// Rohan adding read delay	
-			//perfmodel_add_delay(1, nr);
+#if CONFIG_LEDGER
+			perfmodel_add_delay(1, nr);
+#endif
 		}
 		else
 			left = __clear_user(buf + copied, nr);
@@ -171,7 +173,9 @@ static inline size_t memcpy_to_nvmm(char *kmem, loff_t offset,
 	}
 
 	// Rohan adding write delay
-	//perfmodel_add_delay(0, bytes);
+#if CONFIG_LEDGER
+	perfmodel_add_delay(0, bytes);
+#endif
 
 	return copied;
 }

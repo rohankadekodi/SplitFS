@@ -453,7 +453,9 @@ static inline void pmfs_flush_buffer(void *buf, uint32_t len, bool fence)
     }
 
     // Rohan adding write delay
-    //perfmodel_add_delay(0, len);
+#if CONFIG_LEDGER
+    perfmodel_add_delay(0, len);
+#endif
 
     /* Do a fence only if asked. We often don't need to do a fence
      * immediately after clflush because even if we get context switched
