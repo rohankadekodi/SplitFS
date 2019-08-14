@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# apt update
+sudo apt update
+
 # install elf
 sudo apt-get install libelf-dev
 
