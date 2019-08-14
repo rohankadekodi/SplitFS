@@ -19,6 +19,7 @@ database_dir=$pmem_dir/leveldbtest-1000
 workload_dir=$leveldb_dir/workloads
 result_dir=$src_dir/results
 fs_results=$result_dir/$fs/$workload
+boost_dir=$src_dir/splitfs
 
 if [ "$fs" == "boost" ]; then
     run_boost=1
