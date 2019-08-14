@@ -29,8 +29,8 @@
 
 ### Dependencies
 
-1. kernel: Installing the linux kernel 4.13.0 involves installing `bc`, `libelf-dev` and `libncurses5-dev`. For ubuntu, please run the script `dependencies/kernel_deps.sh`
-2. LevelDB: Compiling LevelDB requires installing cmake version > 3.9. For ubuntu, please run the script `dependencies/leveldb_deps.sh`
+1. kernel: Installing the linux kernel 4.13.0 involves installing `bc`, `libelf-dev` and `libncurses5-dev`. For ubuntu, please run the script `cd dependencies; ./kernel_deps.sh; cd ..`
+2. LevelDB: Compiling LevelDB requires installing cmake version > 3.9. For ubuntu, please run `cd dependencies; ./leveldb_deps.sh; cd ..`
 3. YCSB: Compiling YCSB requires installing JDK 8 as well as installing maven version 3. Please follow the steps below:
     * `$ sudo add-apt-repository ppa:openjdk-r/ppa`
     * `$ sudo apt update`
@@ -39,7 +39,7 @@
     * `$ export PATH=$PATH:$JAVA_HOME/bin`
     * Check installation using `java -version`
     * `$ sudo apt install maven`
-4. SplitFS: Compiling SplitFS requires installing `Boost`. For Ubuntu, please run the script `dependencies/splitfs_deps.sh`
+4. SplitFS: Compiling SplitFS requires installing `Boost`. For Ubuntu, please run `cd dependencies; ./splitfs_deps.sh; cd ..`
 
 ---
 
