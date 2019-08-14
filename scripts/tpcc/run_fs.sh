@@ -46,7 +46,7 @@ run_workload()
     cp $workload_dir/tpcc.db $pmem_dir && sync
 
     if [ $run_boost -eq 1 ]; then
-        export LD_LIBRARY_PATH=$src_dir/splitfs-so/tpcc/strict
+        export LD_LIBRARY_PATH=$src_dir/splitfs-so/tpcc/posix
         export NVP_TREE_FILE=$boost_dir/bin/nvp_nvp.tree
     fi
 
@@ -55,7 +55,7 @@ run_workload()
     date
 
     if [ $run_boost -eq 1 ]; then
-        time LD_PRELOAD=$src_dir/splitfs-so/tpcc/strict/libnvp.so $tpcc_dir/tpcc_start -w 4 -c 1 -t 200000 2>&1 | tee $fs_results/run$run_id
+        time LD_PRELOAD=$src_dir/splitfs-so/tpcc/posix/libnvp.so $tpcc_dir/tpcc_start -w 4 -c 1 -t 200000 2>&1 | tee $fs_results/run$run_id
     else
         time $tpcc_dir/tpcc_start -w 4 -c 1 -t 200000 2>&1 | tee $fs_results/run$run_id
     fi

@@ -11,7 +11,7 @@ run_rsync()
     for run in 1 2 3
     do
         sudo rm -rf $pmem_dir/*
-        sudo ./run_fs.sh $fs $run
+        sudo taskset -c 0-7 ./run_fs.sh $fs $run
         sleep 5
     done
 }

@@ -11,21 +11,21 @@ run_ycsb()
     for run in 1
     do
         sudo rm -rf $pmem_dir/*
-        sudo ./run_fs.sh LoadA $fs $run
+        sudo taskset -c 0-7 ./run_fs.sh LoadA $fs $run
         sleep 5
-        sudo ./run_fs.sh RunA $fs $run
+        sudo taskset -c 0-7 ./run_fs.sh RunA $fs $run
         sleep 5
-        sudo ./run_fs.sh RunB $fs $run
+        sudo taskset -c 0-7 ./run_fs.sh RunB $fs $run
         sleep 5
-        sudo ./run_fs.sh RunC $fs $run
+        sudo taskset -c 0-7 ./run_fs.sh RunC $fs $run
         sleep 5
-        sudo ./run_fs.sh RunF $fs $run
+        sudo taskset -c 0-7 ./run_fs.sh RunF $fs $run
         sleep 5
-        sudo ./run_fs.sh RunD $fs $run
+        sudo taskset -c 0-7 ./run_fs.sh RunD $fs $run
         sleep 5
-        sudo ./run_fs.sh LoadE $fs $run
+        sudo taskset -c 0-7 ./run_fs.sh LoadE $fs $run
         sleep 5
-        sudo ./run_fs.sh RunE $fs $run
+        sudo taskset -c 0-7 ./run_fs.sh RunE $fs $run
         sleep 5
     done
 }
