@@ -24,6 +24,8 @@ We evaluate and benchmark on SplitFS using different application benchmarks like
 7. TPCC: `cd scripts/tpcc; ./compile_tpcc.sh; cd ../..` -- This will compile TPCC workload
 8. rsync: `cd scripts/rsync; ./compile_rsync.sh; cd ../..` -- This will compile rsync
 
+Note: The <num_threads> argument in the compilation scripts performs the compilation with the number of threads given as input to the script, to improve the speed of compilation. 
+
 ---
 
 ### Workload Generation
