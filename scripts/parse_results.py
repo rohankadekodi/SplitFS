@@ -38,10 +38,10 @@ def get_results(system, files, check_word, rel_index):
     return results
 
 
-def write_csv(result, file):
+def write_csv(result, file, csv_header):
     with open(file, "w", newline="") as f:
         writer = csv.writer(f, delimiter=',')
-        writer.writerow(['System', 'Load A', 'Run A', 'Run B', 'Run C', 'Run D', 'Load E', 'Run E', 'Run F'])
+        writer.writerow(csv_header)
         writer.writerows(result)
 
 
@@ -60,7 +60,8 @@ if __name__ == "__main__":
     all_results.append(pmfs_results)
     all_results.append(dax_results)
 
-    write_csv(all_results, "ycsb.csv")
+    csv_header = ['System', 'Load A', 'Run A', 'Run B', 'Run C', 'Run D', 'Load E', 'Run E', 'Run F']
+    write_csv(all_results, "ycsb.csv", csv_header)
 
     boost_results.clear()
     nova_results.clear()
@@ -88,7 +89,9 @@ if __name__ == "__main__":
     all_results.append(pmfs_results)
     all_results.append(dax_results)
 
-    write_csv(all_results, "tpcc.csv")
+    csv_header.clear()
+    csv_header = ['System', 'Throughput']
+    write_csv(all_results, "tpcc.csv", csv_header)
 
     boost_results.clear()
     nova_results.clear()
@@ -109,7 +112,9 @@ if __name__ == "__main__":
     all_results.append(pmfs_results)
     all_results.append(dax_results)
 
-    write_csv(all_results, "rsync.csv")
+    csv_header.clear()
+    csv_header = ['System', 'Time']
+    write_csv(all_results, "rsync.csv", csv_header)
 
     boost_results.clear()
     nova_results.clear()
