@@ -27,7 +27,7 @@ has a list of experiments evaluating SplitFS(strict, sync and POSIX) vs ext4 DAX
 
 ### System Requirements
 
-1. Ubuntu 16.04
+1. Ubuntu 16.04 / 18.04
 2. At least 32 GB DRAM
 3. At least 4 cores
 4. Baremetal machine (Not a VM)
@@ -38,16 +38,7 @@ has a list of experiments evaluating SplitFS(strict, sync and POSIX) vs ext4 DAX
 ### Dependencies
 
 1. kernel: Installing the linux kernel 4.13.0 involves installing `bc`, `libelf-dev` and `libncurses5-dev`. For ubuntu, please run the script `cd dependencies; ./kernel_deps.sh; cd ..`
-2. LevelDB: Compiling LevelDB requires installing cmake version > 3.9. For ubuntu, please run `cd dependencies; ./leveldb_deps.sh; cd ..`
-3. YCSB: Compiling YCSB requires installing JDK 8 as well as installing maven version 3. Please follow the steps below:
-    * `$ sudo add-apt-repository ppa:openjdk-r/ppa`
-    * `$ sudo apt update`
-    * `$ sudo apt install openjdk-8-jdk`
-    * `$ export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64`
-    * `$ export PATH=$PATH:$JAVA_HOME/bin`
-    * Check installation using `java -version`
-    * `$ sudo apt install maven`
-4. SplitFS: Compiling SplitFS requires installing `Boost`. For Ubuntu, please run `cd dependencies; ./splitfs_deps.sh; cd ..`
+2. SplitFS: Compiling SplitFS requires installing `Boost`. For Ubuntu, please run `cd dependencies; ./splitfs_deps.sh; cd ..`
 
 ---
 
