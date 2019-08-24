@@ -52,11 +52,18 @@ Note: The <num_threads> argument in the compilation scripts performs the compila
 
 ---
 
-### Run Workloads
+### Run Application Workloads
 
 1. YCSB: `cd scripts/ycsb; ./run_ycsb.sh; cd ../..` -- This will run all the YCSB workloads on LevelDB (Load A, Run A-F, Load E, Run E) with `ext4-DAX, NOVA strict, NOVA Relaxed, PMFS, SplitFS-strict` 
 2. TPCC: `cd scripts/tpcc; ./run_tpcc.sh; cd ../..` -- This will run the TPCC workload on SQLite3 with `ext4-DAX, NOVA strict, NOVA Relaxed, PMFS, SplitFS-POSIX`
 3. rsync: `cd scripts/rsync; ./run_rsync.sh; cd ../..` -- This will run the rsync workload with `ext4-DAX, NOVA strict, NOVA Relaxed, PMFS, SplitFS-sync`
+
+---
+
+### Run Software Overhead Workloads
+
+1. YCSB: `cd scripts/ycsb; ./run_ycsb_soft.sh; cd ../..` -- This will run all the YCSB workloads on LevelDB (Load A, Run A) with `ext4-DAX, NOVA strict, NOVA Relaxed, PMFS, SplitFS-strict, SplitFS-sync, SplitFS-POSIX` 
+2. TPCC: `cd scripts/tpcc; ./run_tpcc_soft.sh; cd ../..` -- This will run the TPCC workload on SQLite3 with `ext4-DAX, NOVA strict, NOVA Relaxed, PMFS, SplitFS-strict, SplitFS-sync, SplitFS-POSIX`
 
 ---
 
