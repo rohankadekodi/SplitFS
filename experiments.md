@@ -71,6 +71,7 @@ Note: The <num_threads> argument in the compilation scripts performs the compila
 
 Results will be generated in `results/` folder in the repository.
 The result parsing script is present in the `scripts/` folder in the repository. It can be run with the command `$ python3 parse_results.py`. The script generates separate CSV files for different applications.
+The result parsing script for software overhead is present in the `scripts/` folder in the repository. It can be run with the command `$ python3 parse_results_softover.py`. The script generates CSV files for YCSB and TPCC.
 In order to compare results with the paper, YCSB results of SplitFS-Strict should be compared with NOVA, TPC-C results of SplitFS-POSIX should be compared with NOVA and ext4 DAX, rsync results of SplitFS-Sync should be compared with PMFS and NOVA-relaxed.
 
 ---
