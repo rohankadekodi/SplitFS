@@ -8,7 +8,7 @@ pmem_dir=/mnt/pmem_emul
 run_tpcc()
 {
     fs=$1
-    for run in 1 2 3
+    for run in 1
     do
         sudo rm -rf $pmem_dir/*
         sudo taskset -c 0-7 ./run_fs_soft.sh $fs $run
