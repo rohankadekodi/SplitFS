@@ -1,40 +1,38 @@
 #!/bin/bash
 
-src_dir=`readlink -f ../../`
 cur_dir=`readlink -f ./`
-setup_dir=`readlink -f ../configs`
+src_dir=`readlink -f ../../`
+setup_dir=$src_dir/scripts/configs
 pmem_dir=/mnt/pmem_emul
 
-run_ycsb()
+run_tpcc()
 {
     fs=$1
-    for run in 1
+    for run in 1 2 3
     do
         sudo rm -rf $pmem_dir/*
-        sudo taskset -c 0-7 ./run_fs_soft.sh LoadA $fs $run
-        sleep 5
-        sudo taskset -c 0-7 ./run_fs_soft.sh RunA $fs $run
+        sudo taskset -c 0-7 ./run_fs_soft.sh $fs $run
         sleep 5
     done
 }
 
 sudo $setup_dir/dax_config.sh
-run_ycsb dax
+run_tpcc dax
 
 sudo $setup_dir/nova_relaxed_config.sh
-run_ycsb relaxed_nova
+run_tpcc relaxed_nova
 
 sudo $setup_dir/pmfs_config.sh
-run_ycsb pmfs
+run_tpcc pmfs
 
 sudo $setup_dir/nova_config.sh
-run_ycsb nova
+run_tpcc nova
 
 sudo $setup_dir/dax_config.sh
-run_ycsb boost
+run_tpcc boost
 
 sudo $setup_dir/dax_config.sh
-run_ycsb sync_boost
+run_tpcc sync_boost
 
 sudo $setup_dir/dax_config.sh
-run_ycsb posix_boost
+run_tpcc posix_boost
