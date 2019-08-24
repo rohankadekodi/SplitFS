@@ -63,7 +63,7 @@ run_workload()
     if [ $run_boost -eq 1 ]; then
         time LD_PRELOAD=$src_dir/splitfs-so/tpcc/$mode/soft/libnvp.so $tpcc_dir/tpcc_start -w 4 -c 1 -t 200000 2>&1 | tee $fs_results/run_soft_over_$run_id
     else
-        time LD_PRELOAD=$src_dir/splitfs-so/tpcc/fs/libnvp.so $tpcc_dir/tpcc_start -w 4 -c 1 -t 200000 2>&1 | tee $fs_results/run_soft_over_$run_id
+        time LD_PRELOAD=$src_dir/splitfs-so/fs/libnvp.so $tpcc_dir/tpcc_start -w 4 -c 1 -t 200000 2>&1 | tee $fs_results/run_soft_over_$run_id
     fi
 
     date
