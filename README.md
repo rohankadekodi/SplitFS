@@ -42,6 +42,19 @@ has a list of experiments evaluating SplitFS(strict, sync and POSIX) vs ext4 DAX
 
 ---
 
+### Try it out
+
+1. Set mode for U-Split (strict, sync or POSIX): modify `<path_to_splitfs_src>/common.mk`:
+    * `LEDGER_DATAJ=1; LEDGER_POSIX=0` for SplitFS-strict
+    * `LEDGER_DATAJ=0; LEDGER_POSIX=0` for SplitFS-sync
+    * `LEDGER_DATAJ=0; LEDGER_POSIX=1` for SplitFS-POSIX
+1. Create ext4 file system and mount with `-o dax`: `sudo mkfs.ext4 -b 4096 /dev/pmem0; sudo mount -o dax /dev/pmem0 /mnt/pmem_emul`
+2. Set the LD_LIBRARY_PATH environment variable: `export LD_LIBRARY_PATH=<path_to_splitfs_src>`
+3. Set the NVP_TREE_FILE environment variable: `export NVP_TREE_FILE=<path_to_splitfs_src>/bin/nvp_nvp.tree`
+4. Run  application binary: `LD_PRELOAD=<path_to_splitfs_src>/libnvp.so <application_binary>`
+
+---
+
 ### Contact
 
 In case of any difficulties, please send an e-mail to `rak@cs.utexas.edu`
